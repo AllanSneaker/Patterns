@@ -1,5 +1,6 @@
-﻿using Command.Concrete;
-using System;
+﻿using Command.Abstractions;
+using Command.Concrete;
+using System.Collections.Generic;
 
 namespace Command
 {
@@ -7,14 +8,13 @@ namespace Command
     {
         static void Main(string[] args)
         {
-            var createFile = new CreateFileInstallerCommand(@"D:\Test\test.txt");
-            //var appendText = new AppendTextInstallerCommand(@"D:\Test\test.txt", "text");
+            var transanctions = new TransanctionInstallerCommand(new List<InstallerCommand>
+            { new CreateFileInstallerCommand(@"D:\test.txt"),
+              new AppendTextInstallerCommand(@"D:\test.txt", "some text")
+            });
 
-            var installer = new Installer(createFile);
+            var installer = new Installer(transanctions);
             installer.Install();
-
-            //var installer2 = new Installer(appendText);
-            //installer2.Install();
         }
     }
 }

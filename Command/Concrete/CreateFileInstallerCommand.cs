@@ -14,7 +14,7 @@ namespace Command.Concrete
         }
         public override void Execute()
         {
-            using (File.Create(_filePath)) { File.Open(_filePath, FileMode.Open); }
+            using (File.Create(_filePath)) { }
 
             Console.WriteLine($"File Created: {_filePath}");
         }
